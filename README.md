@@ -1,5 +1,5 @@
 # send_command_to_robot
-	service server and client for send command to robot
+service server and client for send command to robot
 
 ## Usage
 1. Git clone and build this project
