@@ -62,7 +62,7 @@ find_package(OpenCV REQUIRED COMPONENTS core imgproc highgui objdetect)
 ## Generate services in the 'srv' folder
 add_service_files(
   FILES
-  robot_service.srv
+  data.srv
 )
 
 ## Generate actions in the 'action' folder
@@ -219,3 +219,4 @@ target_link_libraries(robot_command_client ${catkin_LIBRARIES})
 add_executable(robot_command_server src/robot_command_server.cpp)
 add_dependencies(robot_command_server ${catkin_EXPORTED_TARGETS} tutorial_gencpp)
 target_link_libraries(robot_command_server ${catkin_LIBRARIES})
+

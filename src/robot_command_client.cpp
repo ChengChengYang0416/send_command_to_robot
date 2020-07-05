@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include <send_command_to_robot/robot_service.h>
+#include "send_command_to_robot/data.h"
 #include <cstdlib>
 
 geometry_msgs::Pose command;
@@ -11,13 +11,13 @@ int main(int argc, char **argv)
 {
   ros::init(argc, argv, "robot_command_client");
   ros::NodeHandle nh;
-  ros::ServiceClient client = nh.serviceClient<send_command_to_robot::robot_service>\
-      ("robot_service");
+  ros::ServiceClient client = nh.serviceClient<send_command_to_robot::data>\
+      ("grasp");
 
   ros::Subscriber command_sub = nh.subscribe<geometry_msgs::Pose>
               ("/robot_command", 10, command_cb);
 
-  send_command_to_robot::robot_service srv;
+  send_command_to_robot::data srv;
 
   /*
   srv.request.pose.position.x = command.position.x;
@@ -29,14 +29,14 @@ int main(int argc, char **argv)
   srv.request.pose.orientation.w = command.orientation.w;
   */
 
-  srv.request.pose.position.x = 1;
-  srv.request.pose.position.y = 0;
-  srv.request.pose.position.z = 1;
+  srv.request.pose.position.x = 0.3;
+  srv.request.pose.position.y = 0.0;
+  srv.request.pose.position.z = 0.1;
   srv.request.pose.orientation.x = 0;
-  srv.request.pose.orientation.y = 0;
+  srv.request.pose.orientation.y = 0.707;
   srv.request.pose.orientation.z = 0;
-  srv.request.pose.orientation.w = 1;
-
+  srv.request.pose.orientation.w = 0.707;
+  srv.request.id = 0;
   /*
   while (ros::ok()){
     client.call(srv);
